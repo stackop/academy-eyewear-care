@@ -7,6 +7,14 @@
   <meta name="theme-color" content="#e91313" />
   <title>안경 사용 및 관리 시 주의사항 | 아카데미안경</title>
 
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css"
+  />
+
   <style>
     :root {
       --brand: #e91313;
@@ -20,7 +28,7 @@
 
       --text: #181818;
       --text-sub: #535353;
-      --muted: #7b7b7b;
+      --muted: #6b6b6b;
       --line: #e9e9e7;
 
       --shadow: 0 16px 42px rgba(33, 25, 25, 0.07);
@@ -44,6 +52,7 @@
         radial-gradient(circle at 50% -100px, rgba(233, 19, 19, 0.08), transparent 420px),
         var(--bg);
       font-family:
+        "Pretendard Variable",
         Pretendard,
         -apple-system,
         BlinkMacSystemFont,
@@ -58,6 +67,41 @@
 
     button {
       font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--brand);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .share-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 18px auto 0;
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+    }
+
+    .share-button:hover {
+      border-color: var(--brand);
+      color: var(--brand-dark);
+      background: var(--brand-softer);
+    }
+
+    .share-button svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
     }
 
     .page {
@@ -80,24 +124,28 @@
       margin: 0 auto 28px;
     }
 
-    .eyebrow {
+    .cert-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      margin: 0 0 12px;
-      padding: 6px 11px;
+      gap: 8px;
+      margin: 4px auto 0;
+      padding: 6px 12px 6px 8px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      font-size: 12px;
-      font-weight: 800;
+      background: var(--surface);
     }
 
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--brand);
+    .cert-badge img {
+      display: block;
+      height: 26px;
+      width: auto;
+    }
+
+    .cert-badge span {
+      color: var(--text-sub);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
     h1 {
@@ -414,9 +462,9 @@
         alt="아카데미 안경 콘택트 로고"
       />
 
-      <div class="eyebrow">
-        <span class="eyebrow-dot" aria-hidden="true"></span>
-        안경 사용 및 관리 안내
+      <div class="cert-badge">
+        <img src="assets/baekyeon-badge.png" alt="백년가게 인증 마크" />
+        <span>백년가게 인증점</span>
       </div>
 
       <h1>안경·선글라스<br />사용 시 주의사항</h1>
@@ -425,6 +473,16 @@
         소중한 안경을 오래도록 편안하게 사용하려면
         <strong>아래 5가지만</strong> 기억해주세요.
       </p>
+
+      <button class="share-button" id="shareButton" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <path d="M8.6 10.5 15.4 6.5M8.6 13.5 15.4 17.5"/>
+        </svg>
+        <span id="shareButtonLabel">공유하기</span>
+      </button>
     </section>
 
     <div class="main-card">
@@ -610,6 +668,37 @@
   </main>
 
   <script>
+    const shareButton = document.getElementById("shareButton");
+
+    shareButton.addEventListener("click", async () => {
+      const shareData = {
+        title: document.title,
+        text: "안경·선글라스 사용 및 관리 시 주의사항",
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // 사용자가 공유를 취소한 경우 등은 무시
+        }
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        const label = document.getElementById("shareButtonLabel");
+        const original = label.textContent;
+        label.textContent = "링크가 복사되었어요";
+        setTimeout(() => {
+          label.textContent = original;
+        }, 1800);
+      } catch (err) {
+        alert("링크 복사에 실패했습니다. 주소창의 URL을 직접 복사해주세요.");
+      }
+    });
+
     const playButton = document.getElementById("playVideo");
     const videoShell = document.getElementById("videoShell");
     const videoPlaceholder = document.getElementById("videoPlaceholder");
