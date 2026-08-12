@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="아카데미안경 안경·선글라스 사용 및 관리 시 주의사항" />
+  <meta name="theme-color" content="#e91313" />
+  <title>안경 사용 및 관리 시 주의사항 | 아카데미안경</title>
+
+  <style>
+    :root {
+      --brand: #e91313;
+      --brand-dark: #bd0e0e;
+      --brand-soft: #fff1f1;
+      --brand-softer: #fff8f8;
+
+      --bg: #f6f6f4;
+      --surface: #ffffff;
+      --surface-soft: #fafafa;
+
+      --text: #181818;
+      --text-sub: #535353;
+      --muted: #7b7b7b;
+      --line: #e9e9e7;
+
+      --shadow: 0 16px 42px rgba(33, 25, 25, 0.07);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% -100px, rgba(233, 19, 19, 0.08), transparent 420px),
+        var(--bg);
+      font-family:
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(760px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero {
+      text-align: center;
+      padding: 24px 18px 28px;
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(330px, 76vw);
+      height: auto;
+      margin: 0 auto 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--brand-soft);
+      color: var(--brand-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(31px, 8vw, 46px);
+      line-height: 1.17;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      margin: 16px auto 0;
+      color: var(--text-sub);
+      font-size: 16px;
+    }
+
+    .hero-copy strong {
+      color: var(--brand-dark);
+    }
+
+    /* ---------- Main card ---------- */
+
+    .main-card {
+      overflow: hidden;
+      border: 1px solid rgba(233, 233, 231, 0.95);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .section {
+      padding: 30px 28px;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      margin: 0 0 5px;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ---------- Video ---------- */
+
+    .video-shell {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(233, 19, 19, 0.35), transparent 260px),
+        #202020;
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .video-inner {
+      max-width: 430px;
+    }
+
+    .play-button {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 17px;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--brand);
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(233, 19, 19, 0.34);
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    .play-button:hover {
+      transform: scale(1.035);
+      background: #f12121;
+    }
+
+    .play-button svg {
+      width: 29px;
+      height: 29px;
+      margin-left: 4px;
+    }
+
+    .video-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .video-help {
+      margin: 6px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+    }
+
+    .video-shell iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* ---------- Tips ---------- */
+
+    .tips {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .tip {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface-soft);
+    }
+
+    .tip-mark {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      color: var(--brand);
+      background: var(--brand-soft);
+    }
+
+    .tip-mark svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+
+    .tip-title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .tip-number {
+      flex: 0 0 auto;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .tip h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+
+    .tip p {
+      margin: 7px 0 0;
+      color: var(--text-sub);
+      font-size: 14px;
+    }
+
+    .tip strong {
+      color: var(--text);
+    }
+
+    /* ---------- Summary ---------- */
+
+    .remember {
+      margin-top: 18px;
+      padding: 17px 18px;
+      border-left: 4px solid var(--brand);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      background: var(--brand-softer);
+    }
+
+    .remember p {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 14px;
+    }
+
+    .remember strong {
+      color: var(--brand-dark);
+    }
+
+    /* ---------- Contact ---------- */
+
+    .contact-box {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: #202020;
+      color: #fff;
+    }
+
+    .contact-box .small {
+      margin: 0 0 5px;
+      color: #ff8f8f;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .contact-box strong {
+      display: block;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-box p {
+      margin: 7px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+    }
+
+    /* ---------- Footer ---------- */
+
+    .footer {
+      padding: 28px 12px 4px;
+      text-align: center;
+      color: #969696;
+      font-size: 12px;
+    }
+
+    .footer strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--brand);
+      font-size: 13px;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 16px, 760px);
+        padding-top: 14px;
+      }
+
+      .hero {
+        padding: 20px 12px 23px;
+      }
+
+      .brand-logo {
+        width: min(285px, 78vw);
+        margin-bottom: 23px;
+      }
+
+      .hero-copy {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 24px 18px;
+      }
+
+      .tip {
+        grid-template-columns: 46px 1fr;
+        gap: 12px;
+        padding: 16px 14px;
+      }
+
+      .tip-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+      }
+
+      .tip h3 {
+        font-size: 16px;
+      }
+
+      .video-title {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <img
+        class="brand-logo"
+        src="assets/academy-logo.png"
+        alt="아카데미 안경 콘택트 로고"
+      />
+
+      <div class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        안경 사용 및 관리 안내
+      </div>
+
+      <h1>안경·선글라스<br />사용 시 주의사항</h1>
+
+      <p class="hero-copy">
+        소중한 안경을 오래도록 편안하게 사용하려면
+        <strong>아래 5가지만</strong> 기억해주세요.
+      </p>
+    </section>
+
+    <div class="main-card">
+      <section class="section">
+        <p class="section-label">VIDEO GUIDE</p>
+        <h2>영상으로 쉽게 확인해보세요</h2>
+        <p class="section-copy">
+          재생 버튼을 누르면 소리와 함께 안내 영상이 시작됩니다.
+        </p>
+
+        <!--
+          실제 YouTube 영상 연결 방법
+          아래 data-video-id="YOUR_YOUTUBE_VIDEO_ID"의 값을 영상 ID로 변경하세요.
+
+          예)
+          https://www.youtube.com/watch?v=AbCdEf12345
+          → data-video-id="AbCdEf12345"
+        -->
+        <div
+          class="video-shell"
+          id="videoShell"
+          data-video-id="yWW6tYMYv7w"
+        >
+          <div class="video-placeholder" id="videoPlaceholder">
+            <div class="video-inner">
+              <button
+                class="play-button"
+                id="playVideo"
+                type="button"
+                aria-label="안경 사용 주의사항 영상 재생"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5.5v13l10-6.5-10-6.5z"></path>
+                </svg>
+              </button>
+
+              <p class="video-title">안경 사용 및 관리 방법 영상</p>
+              <p class="video-help">누르면 소리와 함께 재생됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">CARE TIPS</p>
+        <h2>꼭 기억해주세요</h2>
+        <p class="section-copy">
+          안경과 선글라스의 렌즈와 코팅을 오래 유지하기 위한 기본 관리 방법입니다.
+        </p>
+
+        <div class="tips">
+          <article class="tip">
+            <div class="tip-mark" aria-hidden="true">
+              <!-- Car / heat -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 16h14l-1.5-5H6.5L5 16Z"/>
+                <path d="M7 16v2M17 16v2M8 11l1-3h6l1 3"/>
+                <path d="M4 5h2M5 4v2M18 4h2M19 3v2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tip-title-row">
+                <span class="tip-number">01</span>
+                <h3>여름철 뜨거운 차 안에 두지 마세요</h3>
+              </div>
+              <p>
+                차량 내부는 매우 뜨거워질 수 있습니다.
+                <strong>안경이나 선글라스를 차 안에 장시간 보관하지 마세요.</strong>
+              </p>
+            </div>
+          </article>
+
+          <article class="tip">
+            <div class="tip-mark" aria-hidden="true">
+              <!-- Water -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3s5 5.2 5 9a5 5 0 0 1-10 0c0-3.8 5-9 5-9Z"/>
+                <path d="M9.5 13.2a2.8 2.8 0 0 0 2.5 1.5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tip-title-row">
+                <span class="tip-number">02</span>
+                <h3>땀이 많이 묻었다면 찬물로 씻어주세요</h3>
+              </div>
+              <p>
+                땀이나 이물질이 많이 묻었을 때는
+                <strong>흐르는 찬물로 가볍게 세척</strong>해주세요.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip">
+            <div class="tip-mark" aria-hidden="true">
+              <!-- Cloth / lens -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3.5 10h4l1.5 2h6l1.5-2h4"/>
+                <circle cx="7.5" cy="13.5" r="3.5"/>
+                <circle cx="16.5" cy="13.5" r="3.5"/>
+                <path d="m5 5 14 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tip-title-row">
+                <span class="tip-number">03</span>
+                <h3>옷이나 휴지로 렌즈를 닦지 마세요</h3>
+              </div>
+              <p>
+                안경닦이가 없더라도 옷이나 휴지로 닦지 마세요.
+                렌즈 표면에 미세한 손상을 줄 수 있습니다.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip">
+            <div class="tip-mark" aria-hidden="true">
+              <!-- Bottle -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 4h6M10 4v3l-2 2v10h8V9l-2-2V4"/>
+                <path d="M8 12h8"/>
+                <path d="m5 5 14 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tip-title-row">
+                <span class="tip-number">04</span>
+                <h3>샴푸·린스 등으로 세척하지 마세요</h3>
+              </div>
+              <p>
+                샴푸, 린스 등은 사용하지 말아주세요.
+                세제가 필요한 경우에는 <strong>소량의 중성 주방세제</strong>를 사용해주세요.
+              </p>
+            </div>
+          </article>
+
+          <article class="tip">
+            <div class="tip-mark" aria-hidden="true">
+              <!-- Temperature -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 5a2 2 0 0 1 4 0v8.2a4 4 0 1 1-4 0V5Z"/>
+                <path d="M12 9v6"/>
+                <path d="M17 6h3M18.5 4.5v3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="tip-title-row">
+                <span class="tip-number">05</span>
+                <h3>세척할 때는 항상 찬물을 사용해주세요</h3>
+              </div>
+              <p>
+                안경이나 선글라스를 세척할 때는 뜨거운 물 대신
+                <strong>찬물</strong>을 사용해주세요.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="remember">
+          <p>
+            <strong>한 번 더 기억해주세요.</strong>
+            열과 마찰은 렌즈 코팅에 부담을 줄 수 있습니다.
+            뜨거운 곳은 피하고, 세척은 찬물로 부드럽게 해주세요.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="contact-box">
+          <p class="small">NEED HELP?</p>
+          <strong>안경에 이상이 생겼나요?</strong>
+          <p>
+            직접 조정하거나 수리하지 마시고,
+            구매하신 아카데미안경원에 방문해주세요.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <strong>아카데미 안경 콘택트</strong>
+      안경을 더 오래, 더 편안하게 사용할 수 있도록 안내해드립니다.
+    </footer>
+  </main>
+
+  <script>
+    const playButton = document.getElementById("playVideo");
+    const videoShell = document.getElementById("videoShell");
+    const videoPlaceholder = document.getElementById("videoPlaceholder");
+
+    playButton.addEventListener("click", () => {
+      const videoId = videoShell.dataset.videoId;
+
+      if (!videoId || videoId === "YOUR_YOUTUBE_VIDEO_ID") {
+        alert("index.html의 data-video-id에 YouTube 영상 ID를 입력해주세요.");
+        return;
+      }
+
+      const iframe = document.createElement("iframe");
+      iframe.src =
+        "https://www.youtube.com/embed/" +
+        encodeURIComponent(videoId) +
+        "?autoplay=1&rel=0";
+
+      iframe.title = "안경 사용 및 관리 방법 영상";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+
+      videoPlaceholder.remove();
+      videoShell.appendChild(iframe);
+    });
+  </script>
+</body>
+</html>
